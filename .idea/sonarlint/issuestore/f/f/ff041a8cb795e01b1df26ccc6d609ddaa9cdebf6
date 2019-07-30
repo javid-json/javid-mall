@@ -1,0 +1,13 @@
+
+bsquid:S1192¾"JDefine a constant instead of duplicating this literal "realName" 12 times.(Ö­ú€
+bsquid:S1192²"JDefine a constant instead of duplicating this literal "userName" 12 times.( Ö¨•
+_squid:S1192v"HDefine a constant instead of duplicating this literal "userId" 10 times.(İ§‰ 
+csquid:S1192„"KDefine a constant instead of duplicating this literal "telephone" 12 times.(ªà
+bsquid:S1192ø"JDefine a constant instead of duplicating this literal "password" 12 times.(­â›Î
+wsquid:S14888"`Immediately return this expression instead of assigning it to the temporary variable "criteria".(¶Õ¯ì
+csquid:S00112X"FDefine and throw a dedicated exception instead of using a generic one.(ÔÁñÍøÿÿÿÿ
+csquid:S00112_"FDefine and throw a dedicated exception instead of using a generic one.(õÜ—ºşÿÿÿÿ
+]squid:S00112f"FDefine and throw a dedicated exception instead of using a generic one.(ìá¤
+
+Tsquid:S11551">Use isEmpty() to check whether the collection is empty or not.(Á½¼s
+Zsquid:S1155K">Use isEmpty() to check whether the collection is empty or not.(í´Õûüÿÿÿÿ

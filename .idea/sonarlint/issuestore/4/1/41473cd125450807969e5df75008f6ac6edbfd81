@@ -1,0 +1,5 @@
+
+[squid:UselessImportCheck"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8½³ƒãÁ-
+Fsquid:S1148C"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8üáÏëÁ-
+squid:UselessImportCheck"ORemove this unused import 'com.fasterxml.jackson.core.JsonProcessingException'.(ßÔïÇûÿÿÿÿ8ëªÎëÁ-
+fsquid:UselessImportCheck";Remove this unused import 'pers.javid.mall.entity.Address'.(Ÿ¼Æú8½³ƒãÁ-
