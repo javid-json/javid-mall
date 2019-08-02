@@ -1,6 +1,6 @@
 
-psquid:ModifiersOrderCheck"EReorder the modifiers to comply with the Java Language Specification.(Â…õv8²ıÇÄÂ-
-_squid:S3457"AFormat specifiers should be used instead of string concatenation.(¢ÜŠ8ƒ±ÎÄÂ-
-Xsquid:S2209"5Change this instance-reference to a static reference.(Äà·»ıÿÿÿÿ8ğ¸ÅÄÂ-
 €squid:UselessImportCheck
 "URemove this unused import 'org.springframework.boot.autoconfigure.jms.JmsProperties'.(½ĞÉ£8Ø¾ÄÄÂ-
+_squid:S3457"AFormat specifiers should be used instead of string concatenation.(¢ÜŠ8ƒ±ÎÄÂ-
+psquid:ModifiersOrderCheck"EReorder the modifiers to comply with the Java Language Specification.(Â…õv8²ıÇÄÂ-
+Xsquid:S2209"5Change this instance-reference to a static reference.(Äà·»ıÿÿÿÿ8ğ¸ÅÄÂ-
