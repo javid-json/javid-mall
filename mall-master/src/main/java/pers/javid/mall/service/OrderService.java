@@ -5,7 +5,9 @@ import pers.javid.mall.entity.Order;
 public interface OrderService {
     int deleteByPrimaryKey(Integer orderId);
 
-    int insert(Order record);
+    Object create(Order record);
+
+    Object cancel(Integer orderId);
 
     Order selectByPrimaryKey(Integer orderId);
 

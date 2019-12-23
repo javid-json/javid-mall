@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import pers.javid.mall.dao.ProductMapper;
 import pers.javid.mall.entity.Product;
 import pers.javid.mall.service.ProductService;
+
 @Service
 public class ProductServiceImpl implements ProductService {
     @Autowired

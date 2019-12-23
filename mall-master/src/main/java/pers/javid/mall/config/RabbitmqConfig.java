@@ -16,6 +16,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import pers.javid.mall.listener.UserOrderListener;
+import pers.javid.mall.utils.QueueEnum;
 
 @Configuration
 public class RabbitmqConfig {
@@ -102,6 +103,52 @@ public class RabbitmqConfig {
         return BindingBuilder.bind(userOrderQueue()).to(userOrderExchange()).with(env.getProperty("user.order.routing.key.name"));
     }
 
+    @Bean
+    public DirectExchange orderDirect(){
+        return (DirectExchange)ExchangeBuilder
+                .directExchange(QueueEnum.QUEUE_ORDER_CANCEL.getName())
+                .durable(true)
+                .build();
+    }
+
+    @Bean
+    public DirectExchange orderTtlDirect(){
+        return (DirectExchange)ExchangeBuilder
+                .directExchange(QueueEnum.QUEUE_TTL_ORDER_CANCEL.getName())
+                .durable(true)
+                .build();
+    }
+
+    @Bean
+    public Queue orderQueue(){
+        return new Queue(QueueEnum.QUEUE_ORDER_CANCEL.getName(),true);
+    }
+
+    @Bean
+    public Queue orderTtlQueue(){
+        return QueueBuilder
+                .durable(QueueEnum.QUEUE_TTL_ORDER_CANCEL.getName())
+                .withArgument("x-dead-letter-exchange", QueueEnum.QUEUE_ORDER_CANCEL.getExchange())
+                .withArgument("x-dead-letter-routing-key", QueueEnum.QUEUE_ORDER_CANCEL.getRouteKey())
+                .build();
+    }
+
+    @Bean
+    public Binding orderBinding(){
+        return BindingBuilder
+                .bind(orderQueue())
+                .to(orderDirect())
+                .with(QueueEnum.QUEUE_ORDER_CANCEL.getRouteKey());
+    }
+
+    @Bean
+    public Binding orderTtlBinding(){
+        return BindingBuilder
+                .bind(orderTtlQueue())
+                .to(orderTtlDirect())
+                .with(QueueEnum.QUEUE_TTL_ORDER_CANCEL.getRouteKey());
+    }
+
     public SimpleMessageListenerContainer listenerContainerUserOrder(@Qualifier("userOrderQueue") Queue userOrderQueue){
         SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
         container.setConnectionFactory(connectionFactory);
@@ -119,4 +166,6 @@ public class RabbitmqConfig {
 
         return container;
     }
+
+
 }

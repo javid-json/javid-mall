@@ -1,9 +1,10 @@
 package pers.javid.mall.dao;
 
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import pers.javid.mall.entity.User;
 import pers.javid.mall.entity.UserExample;
+
+import java.util.List;
 
 public interface UserMapper {
     int countByExample(UserExample example);
@@ -19,6 +20,8 @@ public interface UserMapper {
     List<User> selectByExample(UserExample example);
 
     User selectByPrimaryKey(Integer userId);
+
+    User loadUserByUserName(String userName);
 
     int updateByExampleSelective(@Param("record") User record, @Param("example") UserExample example);
 

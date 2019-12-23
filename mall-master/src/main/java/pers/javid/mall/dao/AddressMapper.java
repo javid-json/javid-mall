@@ -1,9 +1,10 @@
 package pers.javid.mall.dao;
 
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import pers.javid.mall.entity.Address;
 import pers.javid.mall.entity.AddressExample;
+
+import java.util.List;
 
 public interface AddressMapper {
     int countByExample(AddressExample example);

@@ -148,6 +148,11 @@
       <include refid="Example_Where_Clause" />
     </if>
   </select>
+  <select id="loadUserByUserName" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List"/>
+    from user_info where user_name = #{userName,jdbcType=VARCHAR}
+  </select>
   <update id="updateByExampleSelective" parameterType="map" >
     update user_info
     <set >

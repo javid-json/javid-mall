@@ -5,6 +5,7 @@
     <id column="product_id" property="productId" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="stock" property="stock" jdbcType="INTEGER" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="pers.javid.mall.entity.Product" extends="BaseResultMap" >
     <result column="img" property="img" jdbcType="LONGVARBINARY" />

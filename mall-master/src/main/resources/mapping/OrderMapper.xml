@@ -5,8 +5,9 @@
     <id column="order_id" property="orderId" jdbcType="INTEGER" />
     <result column="user_id" property="userId" jdbcType="INTEGER" />
     <result column="product_id" property="productId" jdbcType="INTEGER" />
+    <result column="address_id" property="addressId" jdbcType="INTEGER" />
     <result column="status" property="status" jdbcType="VARCHAR" />
-    <result column="order_num" property="orderNum" jdbcType="INTEGER" />
+    <result column="order_num" property="orderNum" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -67,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    order_id, user_id, product_id, status, order_num
+    order_id, user_id, product_id,address_id , status, order_num
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="pers.javid.mall.entity.OrderExample" >
     select
@@ -99,11 +100,12 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="pers.javid.mall.entity.Order" >
-    insert into order_info (order_id, user_id, product_id, 
-      status, order_num)
-    values (#{orderId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, 
-      #{status,jdbcType=VARCHAR}, #{orderNum,jdbcType=INTEGER})
+  <insert id="insert" parameterType="pers.javid.mall.entity.Order" useGeneratedKeys="true"
+          keyProperty="orderId" >
+    insert into order_info (user_id, product_id,
+      status, order_num,address_id)
+    values (#{userId,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER},
+      #{status,jdbcType=VARCHAR}, #{orderNum,jdbcType=VARCHAR},#{addressId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="pers.javid.mall.entity.Order" >
     insert into order_info
@@ -138,7 +140,7 @@
         #{status,jdbcType=VARCHAR},
       </if>
       <if test="orderNum != null" >
-        #{orderNum,jdbcType=INTEGER},
+        #{orderNum,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -164,7 +166,7 @@
         status = #{record.status,jdbcType=VARCHAR},
       </if>
       <if test="record.orderNum != null" >
-        order_num = #{record.orderNum,jdbcType=INTEGER},
+        order_num = #{record.orderNum,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -177,7 +179,7 @@
       user_id = #{record.userId,jdbcType=INTEGER},
       product_id = #{record.productId,jdbcType=INTEGER},
       status = #{record.status,jdbcType=VARCHAR},
-      order_num = #{record.orderNum,jdbcType=INTEGER}
+      order_num = #{record.orderNum,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -195,7 +197,7 @@
         status = #{status,jdbcType=VARCHAR},
       </if>
       <if test="orderNum != null" >
-        order_num = #{orderNum,jdbcType=INTEGER},
+        order_num = #{orderNum,jdbcType=VARCHAR},
       </if>
     </set>
     where order_id = #{orderId,jdbcType=INTEGER}
@@ -205,7 +207,7 @@
     set user_id = #{userId,jdbcType=INTEGER},
       product_id = #{productId,jdbcType=INTEGER},
       status = #{status,jdbcType=VARCHAR},
-      order_num = #{orderNum,jdbcType=INTEGER}
+      order_num = #{orderNum,jdbcType=VARCHAR}
     where order_id = #{orderId,jdbcType=INTEGER}
   </update>
 </mapper>
