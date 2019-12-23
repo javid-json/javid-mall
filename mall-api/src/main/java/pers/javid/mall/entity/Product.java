@@ -1,8 +1,10 @@
 package pers.javid.mall.entity;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Arrays;
 
-public class Product {
+public class Product implements Serializable {
     private Integer productId;
 
     private String name;
@@ -10,6 +12,8 @@ public class Product {
     private BigDecimal price;
 
     private byte[] img;
+
+    private Integer stock;
 
     public Integer getProductId() {
         return productId;
@@ -41,5 +45,24 @@ public class Product {
 
     public void setImg(byte[] img) {
         this.img = img;
+    }
+
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productId=" + productId +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", img=" + Arrays.toString(img) +
+                ", stock"+stock+
+                '}';
     }
 }

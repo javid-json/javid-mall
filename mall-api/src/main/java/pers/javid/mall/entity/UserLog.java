@@ -1,6 +1,5 @@
 package pers.javid.mall.entity;
 
-import java.io.InputStream;
 import java.util.Date;
 
 public class UserLog {

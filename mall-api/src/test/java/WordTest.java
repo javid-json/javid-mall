@@ -19,12 +19,26 @@ public class WordTest {
         params.put("bookYEARTOTAL","200");
         params.put("bookAQTS","150");
 
-        List<String[]> tableList = new LinkedList();
+        List<List<Map<String,Object>>> tableList = new LinkedList();
+        List<Map<String,Object>> listMap1 = new LinkedList<Map<String, Object>>();
         Map<String,Object> map = new HashMap<String, Object>();
-        String[] a = new String[]{"a","b","c","d","e"};
-        String[] b = new String[]{"a","b","c","d","f"};
-        tableList.add(a);
-        tableList.add(b);
+        map.put("a",1);
+        map.put("b",1);
+        map.put("c",1);
+        map.put("d",1);
+        map.put("e",1);
+        Map<String,Object> map1 = new HashMap<String, Object>();
+        map1.put("a",1);
+        map1.put("b",2);
+        map1.put("c",3);
+        map1.put("d",4);
+        map1.put("e",5);
+        listMap1.add(map);
+        listMap1.add(map1);
+        List<Map<String,Object>> listMap2 = new LinkedList<Map<String, Object>>();
+        listMap2.add(map);
+        tableList.add(listMap1);
+        tableList.add(listMap2);
         WordUtil.getWord(path,params,tableList);
     }
 }

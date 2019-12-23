@@ -1,9 +1,9 @@
 import org.apache.poi.hwpf.usermodel.Range;
 import org.apache.poi.xwpf.usermodel.*;
 
-import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -23,7 +23,7 @@ public class WordUtil {
      * @param params   需要替换的参数
      * @param tableList   需要插入的参数
      */
-    public static void getWord(String path, Map<String, Object> params, List<String[]> tableList) throws Exception {
+    public static void getWord(String path, Map<String, Object> params, List tableList) throws Exception {
         File file = new File(path);
         InputStream is = new FileInputStream(file);
         XWPFDocument doc = new XWPFDocument(is);
@@ -61,46 +61,6 @@ public class WordUtil {
     private static void replaceInPara(XWPFParagraph para, Map<String, Object> params, XWPFDocument doc) {
         List<XWPFRun> runs;
         Matcher matcher;
-        /*if (matcher(para.getParagraphText()).find()) {
-            runs = para.getRuns();
-            int start = -1;
-            int end = -1;
-            String str = "";
-            for (int i = 0; i < runs.size(); i++) {
-                XWPFRun run = runs.get(i);
-                String runText = run.toString();
-                if ('$' == runText.charAt(0) && '{' == runText.charAt(1)) {
-                    start = i;
-                }
-                if ((start != -1)) {
-                    str += runText;
-                }
-                if ('}' == runText.charAt(runText.length() - 1)) {
-                    if (start != -1) {
-                        end = i;
-                        break;
-                    }
-                }
-            }
-
-            for (int i = start; i <= end; i++) {
-                para.removeRun(i);
-                i--;
-                end--;
-            }
-
-            for (Map.Entry<String, Object> entry : params.entrySet()) {
-                String key = entry.getKey();
-                if (str.indexOf(key) != -1) {
-                    Object value = entry.getValue();
-                    if (value instanceof String) {
-                        str = str.replace(key, value.toString());
-                        para.createRun().setText(str, 0);
-                        break;
-                    }
-                }
-            }
-        }*/
         String runText = "";
 
         if (matcher(para.getParagraphText()).find()) {
@@ -161,15 +121,31 @@ public class WordUtil {
      * @param doc    要替换的文档
      * @param params 参数
      */
-    private static void replaceInTable(XWPFDocument doc, Map<String, Object> params, List<String[]> tableList) {
+    private static void replaceInTable(XWPFDocument doc, Map<String, Object> params, List tableList) {
         Iterator<XWPFTable> iterator = doc.getTablesIterator();
         XWPFTable table;
         List<XWPFTableRow> rows;
         List<XWPFTableCell> cells;
         List<XWPFParagraph> paras;
+        int count = 0;
+        List list;
         while (iterator.hasNext()) {
             table = iterator.next();
-            //if (table.getRows().size() > 1) {
+            list = (List) tableList.get(count);
+            List insertList = new LinkedList();
+            for(int i = 0;i<list.size();i++){
+                Map<String,Object> map = (Map)list.get(i);
+                int index = 0;
+                String[] s = new String[map.size()];
+                for(Map.Entry<String,Object> m: map.entrySet() ){
+                    s[index] = m.getValue().toString();
+                    index++;
+                }
+
+                insertList.add(s);
+            }
+            //行数不够数据行新增行
+            /*if (table.getRows().size() > 1) {
                 //判断表格是需要替换还是需要插入，判断逻辑有$为替换，表格无$为插入
                 if (matcher(table.getText()).find()) {
                     rows = table.getRows();
@@ -178,14 +154,14 @@ public class WordUtil {
                         for (XWPFTableCell cell : cells) {
                             paras = cell.getParagraphs();
                             for (XWPFParagraph para : paras) {
-                                replaceInPara(para, params, doc);
+                                replaceInPara(para, (Map)list.get(0), doc);
                             }
                         }
                     }
-                } else {
-                    insertTable(table, tableList);  //插入数据
                 }
-            //}
+            }*/
+            insertTable(table,insertList);
+            count++;
         }
     }
 
