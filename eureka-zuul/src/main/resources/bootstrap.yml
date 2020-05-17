@@ -1,0 +1,23 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8080/eureka/
+feign:
+  client:
+    config:
+      feignName:
+        connectTimeout: 20000
+        readTimeout: 20000
+server:
+  port: 8085
+spring:
+  application:
+    name: zuul-client
+
+zuul:
+  servlet-path: /
+  routes:
+    zuul1:
+     path: /zuul/**
+     serviceId: RIBBON-CLIENT
+

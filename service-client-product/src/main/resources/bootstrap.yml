@@ -1,0 +1,18 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8080/eureka/
+feign:
+  client:
+    config:
+      feignName:
+        connectTimeout: 20000
+        readTimeout: 20000
+server:
+  port: 8082
+spring:
+  application:
+    name: product-client
+
+
+

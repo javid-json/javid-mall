@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel>
-      <module name="mallorder" target="1.6" />
-    </bytecodeTargetLevel>
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="mall-api" />
+        <module name="eureka-server" />
+        <module name="service-client-category" />
+        <module name="service-client-product" />
+        <module name="service-client-product2" />
+        <module name="eureka-zuul" />
+        <module name="mall-master" />
+        <module name="service-client-order" />
+        <module name="eureka-ribbon" />
+      </profile>
+    </annotationProcessing>
   </component>
 </project>
