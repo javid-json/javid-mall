@@ -1,21 +1,28 @@
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.io.UnsupportedEncodingException;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class GeneralTest {
-    public static void main(String[] args) {
-        Map<String,Object> map = new HashMap<>(2);
-        map.put("a",1);
-        map.put("b",1);
-        map.put("c",1);
+    public static void main(String[] args) throws UnsupportedEncodingException {
+        System.out.println(getValue());
+        //System.out.println("汉字".getBytes("UTF-8").length);
+    }
 
-        //map key 遍历
-        Set<String> keySet = map.keySet();
-        for(String key: keySet){
-            System.out.println(key);
+    protected boolean equals(String str) {
+        return super.equals(str);
+    }
+
+    public static int getValue() {
+        int i = 1;
+        try {
+            i = 4;
+        } finally{
+            i++;
+            return i;
         }
+    }
 
-        //map value 遍历
+    public static void calulate(){
 
     }
 }
